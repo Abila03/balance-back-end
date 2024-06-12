@@ -30,7 +30,7 @@ Route::group([
     Route::post('logout', [penggunaController::class, 'logout']);
     Route::post('refresh', [penggunaController::class, 'refresh']);
     Route::post('me', [penggunaController::class, 'me']);
-    Route::put('update', [penggunaController::class, 'updateAkun']);
+    Route::put('update/{id}', [penggunaController::class, 'updateAkun']);
 });
 
 Route::group([

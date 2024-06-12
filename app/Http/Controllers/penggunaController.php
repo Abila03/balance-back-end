@@ -49,7 +49,7 @@ class penggunaController extends Controller
         }
     }
 
-    public function updateAkun(Request $request)
+    public function updateAkun(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'nama' => 'nullable|string'
@@ -59,7 +59,11 @@ class penggunaController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $user = Auth::user();
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'User tidak ditemukan'], 404);
+        }
 
         if ($request->has('nama')) {
             $user->nama = $request->input('nama');
